@@ -40,22 +40,12 @@
             width: 250px;
             margin-top: 20px;
         }
-
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 8px;
-            background: #22c55e;
-            color: white;
-            cursor: pointer;
-        }
     </style>
 </head>
 
 <body>
 
-<!-- 🔊 Audio -->
+<!-- 🔊 Sound -->
 <audio id="sound">
     <source src="https://www.myinstants.com/media/sounds/trollolol.mp3" type="audio/mpeg">
 </audio>
@@ -70,22 +60,24 @@
     </div>
 </div>
 
-<!-- 😂 Prank Section -->
+<!-- 😂 Prank -->
 <div id="prank">
     <h1>😂 APRIL FOOL 😂</h1>
     <p>No free WiFi here bro 😎</p>
 
-    <!-- 👉 Replace with your GIF -->
-    <img src="https://media1.tenor.com/m/nrxWaJCgDGcAAAAC/monkey-tongue-monkey-lala.gif">
+    <!-- 👉 Replace this GIF -->
+    <img src="https://media.tenor.com/XXXXX/monkey.gif">
 
-    <br><br>
-    <button onclick="playSound()">Tap for sound 🔊</button>
+    <p style="margin-top:20px;">👉 Tap anywhere 😂</p>
 </div>
 
 <script>
 let width = 0;
 let bar = document.getElementById("progress");
 
+let prankShown = false;
+
+// Fake loading animation
 let interval = setInterval(() => {
     if (width >= 100) {
         clearInterval(interval);
@@ -93,17 +85,28 @@ let interval = setInterval(() => {
         document.getElementById("loading").style.display = "none";
         document.getElementById("prank").style.display = "block";
 
+        prankShown = true;
+
     } else {
         width += 5;
         bar.style.width = width + "%";
     }
 }, 200);
 
-// 🔊 Play sound on button click
-function playSound() {
-    let audio = document.getElementById("sound");
-    audio.play();
-}
+
+// 🔊 Play sound when user taps anywhere
+document.body.addEventListener("click", function () {
+    if (prankShown) {
+        let audio = document.getElementById("sound");
+        audio.play();
+
+        // Optional vibration (mobile)
+        if (navigator.vibrate) {
+            navigator.vibrate([200, 100, 200]);
+        }
+    }
+}, { once: true });
+
 </script>
 
 </body>
