@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Free WiFi</title>
+
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+        }
+
+        #loading {
+            margin-top: 100px;
+        }
+
+        .bar {
+            width: 300px;
+            height: 20px;
+            background: #334155;
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 100%;
+            width: 0%;
+            background: #22c55e;
+            transition: width 0.3s;
+        }
+
+        #prank {
+            display: none;
+            margin-top: 50px;
+        }
+
+        img {
+            width: 250px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="loading">
+    <h2>📶 Connecting to Free WiFi...</h2>
+    <p>Please wait...</p>
+
+    <div class="bar">
+        <div class="progress" id="progress"></div>
+    </div>
+</div>
+
+<div id="prank">
+    <h1>😂 APRIL FOOL 😂</h1>
+    <p>No free WiFi here bro 😎</p>
+
+    <img src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif">
+</div>
+
+<audio id="sound">
+    <source src="https://www.myinstants.com/media/sounds/trollolol.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let width = 0;
+let bar = document.getElementById("progress");
+
+let interval = setInterval(() => {
+    if (width >= 100) {
+        clearInterval(interval);
+
+        document.getElementById("loading").style.display = "none";
+        document.getElementById("prank").style.display = "block";
+
+        document.getElementById("sound").play();
+
+        if (navigator.vibrate) {
+            navigator.vibrate([200, 100, 200]);
+        }
+
+    } else {
+        width += 5;
+        bar.style.width = width + "%";
+    }
+}, 200);
+</script>
+
+</body>
+</html>
